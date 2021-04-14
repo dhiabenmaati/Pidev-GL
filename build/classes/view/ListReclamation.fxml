@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="reclamation" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListReclamationController">
+   <children>
+      <TableView fx:id="reclamation" layoutY="42.0" prefHeight="317.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="44.0" text="id" />
+          <TableColumn fx:id="desc_rec" prefWidth="117.0" text="desc_rec" />
+            <TableColumn fx:id="status_rec" minWidth="0.0" prefWidth="94.0" text="status_rec" />
+            <TableColumn fx:id="progress_at" prefWidth="77.0" text="progress_at" />
+            <TableColumn fx:id="valid_at" prefWidth="70.0" text="valid_at" />
+            <TableColumn fx:id="reclmation_at" prefWidth="83.0" text="reclmation_at" />
+            <TableColumn fx:id="type" prefWidth="68.0" text="type" />
+            <TableColumn fx:id="user_id" prefWidth="47.0" text="user_id" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

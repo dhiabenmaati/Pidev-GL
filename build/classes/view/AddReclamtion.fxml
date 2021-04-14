@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddReclamtionController">
+          <Label layoutX="30.0" layoutY="182.0" text="desc_rec" />
+      <Button layoutX="44.0" layoutY="317.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="98.0" text="Add" />
+      <ChoiceBox fx:id="type" layoutX="30.0" layoutY="144.0" prefWidth="150.0" />
+      <Label layoutX="44.0" layoutY="115.0" text="type" />
+   <TextArea fx:id="desc_rec" layoutX="18.0" layoutY="200.0" prefHeight="77.0" prefWidth="505.0" />
+</AnchorPane>
