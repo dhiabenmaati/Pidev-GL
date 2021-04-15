@@ -17,12 +17,14 @@ public class Panier {
     private double prix;
     private int qte;
     private double totale;
+    private int id_prod;
 
-    public Panier(String nom, Double prix, int qte) {
+    public Panier(int id_prod, String nom, Double prix, int qte) {
         this.nom = nom;
         this.prix = prix;
         this.qte = qte;
         this.totale = calcTotalePerItem();
+        this.id_prod = id_prod;
     }
     
     public double calcTotalePerItem() {
@@ -33,6 +35,10 @@ public class Panier {
         return nom;
     }
 
+    public int getID_Prod() {
+        return this.id_prod;
+    }
+    
     public double getPrix() {
         return prix;
     }

@@ -31,6 +31,8 @@ public class MenuController implements Initializable {
     private Button btnPanier;
     @FXML
     private Button btnCommandes;
+    @FXML
+    private Button btnMesAdresse;
 
     /**
      * Initializes the controller class.
@@ -43,6 +45,33 @@ public class MenuController implements Initializable {
     @FXML
     private void goToProduits(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/showProduit.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToMesCommandes(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/showCommande.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToPanier(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/panier.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToAdresse(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/adresse.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

@@ -35,7 +35,7 @@ public class PanierService {
             Map.Entry entry=(Map.Entry)itr.next();  
             Produit p = (Produit)entry.getKey();
             int qte = (int)entry.getValue();
-            Panier item = new Panier(p.getNom_prod(), p.getPrix_prod(), qte);
+            Panier item = new Panier(p.getId(), p.getNom_prod(), p.getPrix_prod(), qte);
             panierItems.add(item);
         }  
         return panierItems;

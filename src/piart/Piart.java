@@ -18,7 +18,7 @@ public class Piart extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gui/menu.fxml"));
         
         Scene scene = new Scene(root);
         

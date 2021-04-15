@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import piart.Utils.ConnectionBD;
 import piart.Entities.Commande;
+import piart.Entities.Panier;
 
 /**
  *
@@ -35,6 +36,7 @@ public class CommandeService {
             pstmt.setInt(3, c.getStatus());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
+
             Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -54,8 +56,8 @@ public class CommandeService {
         return list;
     }
     
-    public Commande getCommandeById(int id) {
-        String req = "SELECT * FROM Commande WHERE id = " + id + "";
+    public Commande getLastCommande() {
+        String req = "SELECT * FROM commande ORDER BY id DESC LIMIT 1";
         try {
             stmt = cnx.createStatement();
             res = stmt.executeQuery(req);

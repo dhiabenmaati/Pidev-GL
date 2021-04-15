@@ -6,9 +6,12 @@
 package piart.Service;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import piart.Entities.Adresse;
+import piart.Entities.Commande;
 import piart.Utils.ConnectionBD;
 
 /**
@@ -26,7 +29,7 @@ public class AdresseService {
     }
     
     public void ajouterAdresse(Adresse adr) {
-        String req="INSERT INTO adresse(user_id, adresse, codepostal, ville, numtel) VALUES (?, ?, ?)";
+        String req="INSERT INTO adresse(user_id, adresse, codepostal, ville, numtel) VALUES (?, ?, ?, ?, ?)";
         try {
             pstmt = cnx.prepareStatement(req);
             pstmt.setInt(1, adr.getUser_id());
@@ -79,5 +82,21 @@ public class AdresseService {
             Logger.getLogger(CommandeService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public List<Adresse> getAllAdresses() {
+        String req = "SELECT * FROM adresse";
+        List<Adresse> list = new ArrayList<>();
+        try {
+            stmt = cnx.createStatement();
+            res = stmt.executeQuery(req);
+            while(res.next()) {
+                list.add(new Adresse(res.getInt("id"), res.getString("adresse"), res.getInt("codepostal"), res.getString("ville"), res.getInt("numtel"), res.getInt("user_id")));
+            }
+        } catch (SQLException ex) { 
+            Logger.getLogger(CommandeService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
     
 }

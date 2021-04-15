@@ -13,7 +13,8 @@
          </font>
       </Label>
       <Button fx:id="btnProduits" layoutX="246.0" layoutY="87.0" mnemonicParsing="false" onAction="#goToProduits" prefHeight="25.0" prefWidth="108.0" text="Produits" />
-      <Button fx:id="btnPanier" layoutX="246.0" layoutY="165.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Panier" />
-      <Button fx:id="btnCommandes" layoutX="246.0" layoutY="125.0" mnemonicParsing="false" text="Mes Commandes" />
+      <Button fx:id="btnPanier" layoutX="246.0" layoutY="165.0" mnemonicParsing="false" onAction="#goToPanier" prefHeight="25.0" prefWidth="108.0" text="Panier" />
+      <Button fx:id="btnCommandes" layoutX="246.0" layoutY="125.0" mnemonicParsing="false" onAction="#goToMesCommandes" text="Mes Commandes" />
+      <Button fx:id="btnMesAdresse" layoutX="246.0" layoutY="207.0" mnemonicParsing="false" onAction="#goToAdresse" prefHeight="25.0" prefWidth="108.0" text="Mes Adresse" />
    </children>
 </AnchorPane>
