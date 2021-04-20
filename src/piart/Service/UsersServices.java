@@ -3,25 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package piart;
+package piart.Service;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 /**
  *
- * @author Amine
+ * @author alabe
  */
-public class Piart extends Application {
+public class UsersServices extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("gui/menu.fxml"));
-        Scene scene = new Scene(root);
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/UserView.fxml"));
+        
+        Scene scene = new Scene(root);      
         stage.setScene(scene);
-        stage.setTitle("PiArt");
         stage.show();
     }
 
@@ -33,3 +34,4 @@ public class Piart extends Application {
     }
     
 }
+

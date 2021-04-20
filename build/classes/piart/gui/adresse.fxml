@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="piart.Controllers.AdresseController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="piart.Controllers.AdresseController">
    <children>
       <Label layoutX="24.0" layoutY="59.0" text="Adresse" />
       <Label layoutX="24.0" layoutY="103.0" text="Ville" />
@@ -28,7 +27,7 @@
         </columns>
       </TableView>
       <Button fx:id="btnBack" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMenu" text="Retourner" />
-      <Label layoutX="265.0" layoutY="20.0" text="Mes Adresse">
+      <Label layoutX="265.0" layoutY="20.0" text="Mes Adresses">
          <font>
             <Font name="Comic Sans MS" size="28.0" />
          </font>
@@ -37,5 +36,7 @@
       <Button fx:id="btnEdit" layoutX="85.0" layoutY="238.0" mnemonicParsing="false" onAction="#edit" text="Modifier" />
       <Button fx:id="btnDelete" layoutX="153.0" layoutY="238.0" mnemonicParsing="false" onAction="#delete" text="Supprimer" />
       <Label fx:id="lbId" layoutX="153.0" layoutY="31.0" visible="false" />
+      <Label fx:id="lbSuccess" layoutX="22.0" layoutY="281.0" textFill="#19c91f" />
+      <Label fx:id="lbError" layoutX="22.0" layoutY="306.0" textFill="RED" />
    </children>
 </AnchorPane>

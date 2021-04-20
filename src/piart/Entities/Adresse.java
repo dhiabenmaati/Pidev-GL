@@ -76,7 +76,7 @@ public class Adresse {
         this.num_tel = num_tel;
     }
 
-    public void setUser_id(User user) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 

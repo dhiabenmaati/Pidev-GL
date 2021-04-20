@@ -65,13 +65,16 @@ public class AdresseController implements Initializable{
     private Button btnDelete;
     @FXML
     private Label lbId;
+    @FXML
+    private Label lbSuccess;
+    @FXML
+    private Label lbError;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("piart.Controllers.AdresseController.initialize()");
         showAdresses();
     }     
 
@@ -86,9 +89,15 @@ public class AdresseController implements Initializable{
 
     @FXML
     private void add(ActionEvent event) {
-        AdresseService as = new AdresseService();
-        Adresse adr = new Adresse(tfAdresse.getText(), Integer.parseInt(tfCP.getText()), tfVille.getText(), Integer.parseInt(tfCP.getText()), 11);
-        as.ajouterAdresse(adr);
+        if(tfAdresse.getText().isEmpty() || tfCP.getText().isEmpty() || tfNum.getText().isEmpty() || tfVille.getText().isEmpty()) {
+            lbError.setText("Le champs adresse est obligatoire !");
+        } else {
+            AdresseService as = new AdresseService();
+            Adresse adr = new Adresse(tfAdresse.getText(), Integer.parseInt(tfCP.getText()), tfVille.getText(), Integer.parseInt(tfCP.getText()), 11);
+            as.ajouterAdresse(adr);
+            lbSuccess.setText("L'adresse a été ajoutée avec succée !");
+            lbError.setText("");
+        }
         showAdresses();
     }
 
@@ -98,6 +107,7 @@ public class AdresseController implements Initializable{
         Adresse adr = new Adresse(Integer.parseInt(lbId.getText()), tfAdresse.getText(), Integer.parseInt(tfCP.getText()), tfVille.getText(), Integer.parseInt(tfCP.getText()), 11);
         as.modifierAdresse(adr);
         showAdresses();
+        lbSuccess.setText("L'adresse a été modifiée avec succée !");
     }
 
     @FXML
@@ -106,6 +116,7 @@ public class AdresseController implements Initializable{
         Adresse adr = new Adresse(Integer.parseInt(lbId.getText()), tfAdresse.getText(), Integer.parseInt(tfCP.getText()), tfVille.getText(), Integer.parseInt(tfCP.getText()), 11);
         as.supprimerAdresse(adr);
         showAdresses();
+        lbSuccess.setText("L'adresse a été supprimée avec succée !");
     }
     
     public void showAdresses() {
