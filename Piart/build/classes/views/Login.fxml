@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Login">
+   <children>
+      <Pane prefHeight="426.0" prefWidth="254.0" style="-fx-background-color: #B99095;" />
+      <Pane layoutX="251.0" prefHeight="426.0" prefWidth="360.0" style="-fx-background-color: #FCB5AC;">
+         <children>
+            <Text fill="WHITE" layoutX="80.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PiArt - SignIn" wrappingWidth="270.40155029296875">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <TextField fx:id="emaill" layoutX="31.0" layoutY="102.0" prefHeight="30.0" prefWidth="180.0" promptText="Email" />
+      <TextField fx:id="passwordd" layoutX="31.0" layoutY="152.0" prefHeight="30.0" prefWidth="180.0" promptText="Password" />
+        <Button fx:id="loginBtn" layoutX="94.0" layoutY="217.0" mnemonicParsing="false" onAction="#Login" style="-fx-background-color: #B5E5CF;" text="Login" />
+      <Button fx:id="GoToSignUpBtn" layoutX="63.0" layoutY="267.0" mnemonicParsing="false" onAction="#GoToSignUp" style="-fx-background-color: #B5E5CF;" text="Create Account ?" />
+   </children>
+</AnchorPane>
