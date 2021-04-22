@@ -11,20 +11,20 @@ package piart.Entities;
  */
 public class DetailCommande {
     private int id;
-    private int commande_id;
-    private int produit_id;
+    private Commande commande;
+    private Produit produit;
     private int qte;
 
-    public DetailCommande(int id, int commande_id, int produit_id, int qte) {
+    public DetailCommande(int id, Commande commande, Produit produit, int qte) {
         this.id = id;
-        this.commande_id = commande_id;
-        this.produit_id = produit_id;
+        this.commande = commande;
+        this.produit = produit;
         this.qte = qte;
     }
 
-    public DetailCommande(int commande_id, int produit_id, int qte) {
-        this.commande_id = commande_id;
-        this.produit_id = produit_id;
+    public DetailCommande(Commande commande, Produit produit, int qte) {
+        this.commande = commande;
+        this.produit = produit;
         this.qte = qte;
     }
 
@@ -32,24 +32,24 @@ public class DetailCommande {
         return id;
     }
 
-    public int getCommande_id() {
-        return commande_id;
+    public Commande getCommande() {
+        return commande;
     }
 
-    public int getProduit_id() {
-        return produit_id;
+    public Produit getProduit() {
+        return produit;
     }
 
     public int getQte() {
         return qte;
     }
 
-    public void setCommande_id(int commande_id) {
-        this.commande_id = commande_id;
+    public void setCommande_id(Commande commande) {
+        this.commande = commande;
     }
 
-    public void setProduit_id(int produit_id) {
-        this.produit_id = produit_id;
+    public void setProduit_id(Produit produit) {
+        this.produit = produit;
     }
 
     public void setQte(int qte) {
@@ -71,10 +71,10 @@ public class DetailCommande {
         if (this.id != other.id) {
             return false;
         }
-        if (this.commande_id != other.commande_id) {
+        if (this.commande != other.commande) {
             return false;
         }
-        if (this.produit_id != other.produit_id) {
+        if (this.produit != other.produit) {
             return false;
         }
         if (this.qte != other.qte) {
@@ -85,7 +85,8 @@ public class DetailCommande {
 
     @Override
     public String toString() {
-        return "DetailCommande{" + "id=" + id + ", commande_id=" + commande_id + ", produit_id=" + produit_id + ", qte=" + qte + '}';
+        return "DetailCommande{" + "id=" + id + ", commande=" + commande + ", produit=" + produit + ", qte=" + qte + '}';
     }
+
     
 }

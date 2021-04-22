@@ -5,16 +5,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="piart.Controllers.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="piart.Controllers.MenuController">
    <children>
-      <Label layoutX="153.0" layoutY="31.0" text="Bienvenue dans PiArt">
+      <Label layoutX="203.0" layoutY="24.0" text="Bienvenue dans PiArt">
          <font>
             <Font name="Comic Sans MS" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="btnProduits" layoutX="246.0" layoutY="87.0" mnemonicParsing="false" onAction="#goToProduits" prefHeight="25.0" prefWidth="108.0" text="Produits" />
-      <Button fx:id="btnPanier" layoutX="246.0" layoutY="165.0" mnemonicParsing="false" onAction="#goToPanier" prefHeight="25.0" prefWidth="108.0" text="Panier" />
-      <Button fx:id="btnCommandes" layoutX="246.0" layoutY="125.0" mnemonicParsing="false" onAction="#goToMesCommandes" text="Mes Commandes" />
-      <Button fx:id="btnMesAdresse" layoutX="246.0" layoutY="207.0" mnemonicParsing="false" onAction="#goToAdresse" prefHeight="25.0" prefWidth="108.0" text="Mes Adresse" />
+      <Button fx:id="btnProduits" layoutX="203.0" layoutY="93.0" mnemonicParsing="false" onAction="#goToProduits" prefHeight="25.0" prefWidth="108.0" text="Produits" />
+      <Button fx:id="btnPanier" layoutX="203.0" layoutY="157.0" mnemonicParsing="false" onAction="#goToPanier" prefHeight="25.0" prefWidth="108.0" text="Panier" />
+      <Button fx:id="btnCommandes" layoutX="389.0" layoutY="93.0" mnemonicParsing="false" onAction="#goToMesCommandes" text="Mes Commandes" />
+      <Button fx:id="btnMesAdresse" layoutX="389.0" layoutY="157.0" mnemonicParsing="false" onAction="#goToAdresse" prefHeight="25.0" prefWidth="108.0" text="Mes Adresse" />
+      <Button fx:id="btnLivreur" layoutX="289.0" layoutY="225.0" mnemonicParsing="false" onAction="#goToLivreur" text="Gestion des Livreurs" />
    </children>
 </AnchorPane>

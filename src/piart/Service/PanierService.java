@@ -20,11 +20,18 @@ import piart.Entities.Produit;
  */
 public class PanierService {
     
-    private static Map panier = new HashMap();
+    private static Map<Produit, Integer> panier = new HashMap<>();
     
     public void add(Produit p) {
-        int qte = (int) panier.getOrDefault(p, 0);
-        panier.put(p, qte + 1);
+        Boolean done = false;
+        for (Map.Entry<Produit, Integer> set : panier.entrySet()) {
+            if(set.getKey().equals(p)) {
+                set.setValue(set.getValue() + 1);
+                done = true;
+            }
+        }
+        if(!done)
+            panier.put(p, 1);
     }
     
     public List<Panier> getPanierItems() {

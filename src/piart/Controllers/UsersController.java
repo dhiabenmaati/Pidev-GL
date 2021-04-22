@@ -5,7 +5,7 @@
  */
 package piart.Controllers;
 
-import com.mysql.cj.xdevapi.JsonArray;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,18 +13,28 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import piart.Entities.Users;
+import piart.Service.LivreurService;
 import piart.Service.mysqlconnect;
+
 /**
  *
  * @author alabe
@@ -67,6 +77,9 @@ public class UsersController implements Initializable {
     @FXML
     private Label lbId;
     
+    @FXML
+    private TextField tfSearch;
+    
     ObservableList<Users> listM;
     
     int index = -1;
@@ -74,6 +87,7 @@ public class UsersController implements Initializable {
     Connection conn =null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    
     
      
     @FXML
@@ -164,4 +178,30 @@ public class UsersController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        UpdateTable();
     }       
+
+    @FXML
+    private void goToMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/menu.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Search(KeyEvent event) {
+        System.out.println(tfSearch.getText());
+        LivreurService lv = new LivreurService();
+        ObservableList<Users> usersList = FXCollections.observableArrayList();
+        List<Users> users = new ArrayList(lv.SearchLivreurByName(tfSearch.getText()));
+        for(Users u : users)
+            usersList.add(u);
+        col_email.setCellValueFactory(new PropertyValueFactory<Users,String>("email"));
+        col_nom.setCellValueFactory(new PropertyValueFactory<Users,String>("name"));
+        col_prenom.setCellValueFactory(new PropertyValueFactory<Users,String>("surname"));
+        col_tel.setCellValueFactory(new PropertyValueFactory<Users, Integer>("num_tel"));
+        col_id.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
+        table_users.setItems(usersList);
+    }
+
 }

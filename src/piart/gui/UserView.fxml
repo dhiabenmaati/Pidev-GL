@@ -20,6 +20,7 @@
             <TextField fx:id="txt_surname" layoutX="24.0" layoutY="230.0" prefHeight="30.0" prefWidth="180.0" promptText="Surname" />
             <TextField fx:id="txt_tel" layoutX="24.0" layoutY="275.0" prefHeight="30.0" prefWidth="180.0" promptText="Numéro Tél" />
             <Label fx:id="lbId" layoutX="38.0" layoutY="34.0" visible="false" />
+            <Button layoutX="24.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToMenu" text="Menu Principale" />
          </children>
       </AnchorPane>
       <TableView fx:id="table_users" layoutX="228.0" layoutY="76.0" onMouseClicked="#getSelected" prefHeight="474.0" prefWidth="469.0">
@@ -31,5 +32,6 @@
             <TableColumn fx:id="col_tel" prefWidth="109.0" text="Numéro Tel" />
         </columns>
       </TableView>
+      <TextField fx:id="tfSearch" layoutX="373.0" layoutY="23.0" onKeyPressed="#Search" prefHeight="30.0" prefWidth="180.0" promptText="Recherche" />
    </children>
 </AnchorPane>

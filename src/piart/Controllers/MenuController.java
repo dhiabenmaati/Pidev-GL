@@ -33,6 +33,8 @@ public class MenuController implements Initializable {
     private Button btnCommandes;
     @FXML
     private Button btnMesAdresse;
+    @FXML
+    private Button btnLivreur;
 
     /**
      * Initializes the controller class.
@@ -72,6 +74,15 @@ public class MenuController implements Initializable {
     @FXML
     private void goToAdresse(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/adresse.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToLivreur(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/UserView.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

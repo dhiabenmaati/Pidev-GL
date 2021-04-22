@@ -8,11 +8,8 @@ package piart.Controllers;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +28,6 @@ import piart.Entities.Commande;
 import piart.Entities.Panier;
 import piart.Service.CommandeService;
 import piart.Service.PanierService;
-import piart.Service.ProduitService;
 
 /**
  * FXML Controller class
@@ -72,41 +68,29 @@ public class PanierController {
     @FXML
     private void Commander(ActionEvent event) {
         CommandeService cs = new CommandeService();
-        long millis=System.currentTimeMillis();  
+        long millis = System.currentTimeMillis();  
         java.sql.Date date=new java.sql.Date(millis);  
         Commande c = new Commande(20, date, 0);
         cs.ajouterCommande(c);
-        Commande lastc = cs.getLastCommande();
-        System.out.println(" id c : " + lastc.getId());
-        PanierService ps = new PanierService();
-        List<Panier> items = ps.getPanierItems();
-        System.out.println(items.size());
-        for(Panier item : items) {
-            item.toString();
-            String req = "INSERT INTO detail_commande(commande_id, produit_id, qte) VALUES (?, ?, ?)";
-            try {
-                pstmt = cnx.prepareStatement(req);
-                pstmt.setInt(1, lastc.getId());
-                pstmt.setInt(2, item.getID_Prod());
-                pstmt.setInt(3, item.getQte());
-                pstmt.executeUpdate();
-            } catch (SQLException ex) {
-                Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        cs.ajouterDetailCommade();
     }
     
     public void showPanier() {
         PanierService ps = new PanierService();
         ObservableList<Panier> panierItems = FXCollections.observableArrayList();
         List<Panier> items = new ArrayList(ps.getPanierItems());
-        for(Panier item : items)
+        int totale = 0;
+        for(Panier item : items) {
             panierItems.add(item);
+            totale += item.getTotale();
+        }
         colNom.setCellValueFactory(new PropertyValueFactory<Panier, String>("nom"));
         colPrix.setCellValueFactory(new PropertyValueFactory<Panier, Double>("prix"));
         colQte.setCellValueFactory(new PropertyValueFactory<Panier, Integer>("qte"));
         colTotal.setCellValueFactory(new PropertyValueFactory<Panier, Double>("totale"));
         tvPanier.setItems(panierItems);
+        
+        lbTotale.setText(Integer.toString(totale) + " DT");
     }
     
 }
