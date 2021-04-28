@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="piart.Controllers.DetailCommandeController">
+   <children>
+      <Label layoutX="194.0" layoutY="18.0" text="Detail de la commande">
+         <font>
+            <Font name="Comic Sans MS" size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tvDetailCmd" layoutX="74.0" layoutY="99.0" prefHeight="302.0" prefWidth="553.0">
+        <columns>
+          <TableColumn fx:id="colProd" prefWidth="238.0" text="Produit" />
+          <TableColumn fx:id="colPrix" prefWidth="98.0" text="Prix" />
+            <TableColumn fx:id="colQte" prefWidth="98.0" text="Quantité" />
+            <TableColumn fx:id="colTotale" prefWidth="118.0" text="Totale" />
+        </columns>
+      </TableView>
+      <Label layoutX="506.0" layoutY="422.0" text="Prix Totale :" />
+      <Label fx:id="lbTotale" layoutX="575.0" layoutY="422.0" />
+      <ChoiceBox fx:id="cbLivreur" layoutX="74.0" layoutY="410.0" prefHeight="25.0" prefWidth="209.0" />
+      <Button layoutX="298.0" layoutY="410.0" mnemonicParsing="false" onAction="#affecterLivreur" text="Valider" />
+      <Label fx:id="lbMsg" layoutX="74.0" layoutY="449.0" textFill="#0c9400">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
