@@ -68,6 +68,7 @@ public class UsersController implements Initializable {
     ResultSet rs = null;
     PreparedStatement pst = null;
     
+    
      
     public void Add_users (){    
         conn = mysqlconnect.ConnectDb();
@@ -78,10 +79,16 @@ public class UsersController implements Initializable {
             pst.setString(2, txt_password.getText());
             pst.setString(3, txt_name.getText());
             pst.setString(4, txt_surname.getText());
-            pst.execute();
             
+            if (txt_email.getText().length()<3 || txt_password.getText().length()<8 || txt_name.getText().length()<3 || txt_surname.getText().length()<3 ){ 
+            System.out.println("Error in Form!");
+            JOptionPane.showMessageDialog(null, "Error in form ... Please verify");
+            }
+            
+            else{
+                pst.execute();
             JOptionPane.showMessageDialog(null, "Users Add succes");
-            UpdateTable();
+            UpdateTable(); }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -112,12 +119,20 @@ public class UsersController implements Initializable {
             String value3 = txt_password.getText();
             String value4 = txt_name.getText();
             String value5 = txt_surname.getText();
+            
+            if (txt_email.getText().length()<3 || txt_password.getText().length()<8 || txt_name.getText().length()<3 || txt_surname.getText().length()<3 ){ 
+            System.out.println("Error in Form!");
+            JOptionPane.showMessageDialog(null, "Error in form ... Please verify");
+            }
+            
+            else {
             String sql = "update user set id= '"+value1+"',email= '"+value2+"',password= '"+
                     value3+"',name= '"+value4+"',surname= '"+value5+"' where id='"+value1+"' ";
             pst= conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Update");
             UpdateTable();
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
