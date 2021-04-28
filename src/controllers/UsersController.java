@@ -21,6 +21,9 @@ import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 import Entity.Users;
 import Services.mysqlconnect;
+import static controllers.Login.encrypt;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 /**
  *
  * @author alabe
@@ -59,8 +62,12 @@ public class UsersController implements Initializable {
         
     @FXML
     private TextField txt_id;
+    
+    @FXML
+    private TextField search;
        
     ObservableList<Users> listM;
+    ObservableList<Users> DataList;
     
     int index = -1;
     
@@ -72,13 +79,14 @@ public class UsersController implements Initializable {
      
     public void Add_users (){    
         conn = mysqlconnect.ConnectDb();
-        String sql = "insert into user (email,password,name,surname)values(?,?,?,? )";
+        String sql = "insert into user (email,password,name,surname,status)values(?,?,?,?,? )";
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, txt_email.getText());
-            pst.setString(2, txt_password.getText());
+            pst.setString(2, encrypt(this.txt_password.getText()));
             pst.setString(3, txt_name.getText());
             pst.setString(4, txt_surname.getText());
+            pst.setString(5, "active");
             
             if (txt_email.getText().length()<3 || txt_password.getText().length()<8 || txt_name.getText().length()<3 || txt_surname.getText().length()<3 ){ 
             System.out.println("Error in Form!");
@@ -88,7 +96,8 @@ public class UsersController implements Initializable {
             else{
                 pst.execute();
             JOptionPane.showMessageDialog(null, "Users Add succes");
-            UpdateTable(); }
+            UpdateTable(); 
+            Search();}
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -116,7 +125,7 @@ public class UsersController implements Initializable {
             conn = mysqlconnect.ConnectDb();
             String value1 = txt_id.getText();
             String value2 = txt_email.getText();
-            String value3 = txt_password.getText();
+            String value3 = encrypt(this.txt_password.getText());
             String value4 = txt_name.getText();
             String value5 = txt_surname.getText();
             
@@ -132,6 +141,7 @@ public class UsersController implements Initializable {
             pst.execute();
             JOptionPane.showMessageDialog(null, "Update");
             UpdateTable();
+            Search();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -148,6 +158,7 @@ public class UsersController implements Initializable {
             pst.execute();
             JOptionPane.showMessageDialog(null, "Delete");
             UpdateTable();
+            Search();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -165,9 +176,48 @@ public class UsersController implements Initializable {
         listM = mysqlconnect.getDatausers();
         table_users.setItems(listM);
     }
+    
+    public void Search(){
+        col_id.setCellValueFactory(new PropertyValueFactory<Users,Integer>("id"));
+        col_email.setCellValueFactory(new PropertyValueFactory<Users,String>("email"));
+        col_password.setCellValueFactory(new PropertyValueFactory<Users,String>("password"));
+        col_name.setCellValueFactory(new PropertyValueFactory<Users,String>("name"));
+        col_surname.setCellValueFactory(new PropertyValueFactory<Users,String>("surname"));
+        
+        DataList = mysqlconnect.getDatausers();
+        table_users.setItems(DataList);
+        FilteredList<Users> filteredData = new FilteredList(DataList, b -> true);
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(Users -> {
+        if (newValue == null || newValue.isEmpty()) {
+        return true;
+        }
+        String lowerCaseFilter = newValue.toLowerCase();
+                
+        if (Users.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+        return true; // Filter matches probleme
+        }
+        else if (Users.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+        return true; // Does not match.
+        }
+        else if (Users.getSurname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+        return true; // Does not match.
+        }
+                else 
+                return false ;
+        });
+                });
+        
+        SortedList sortedData = new SortedList(filteredData);
+        sortedData.comparatorProperty().bind(table_users.comparatorProperty());
+        table_users.setItems(sortedData);
+        }
+                
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
        UpdateTable();
+       Search();
     }       
 }

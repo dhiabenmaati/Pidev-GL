@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Piart.jar" size="61553" download="eager" />
+    <jar href="Piart.jar" size="62823" download="eager" />
     <jar href="lib\activation-jaf1.1.1.jar" size="56290" download="eager" />
     <jar href="lib\java-mail-1.4.4.jar" size="494975" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
