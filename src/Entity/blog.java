@@ -23,6 +23,23 @@ public class blog {
 
     public blog() {
     }
+    
+    public blog(int id, String title, String description, Date date, String image, Date updated_at, int valid, int user_id) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.image = image;
+        this.updated_at = updated_at;
+        this.valid = valid;
+        this.user_id = user_id;
+    }
+    public blog(String title, String description, String image, int user_id) {
+        this.title = title;
+        this.description = description;
+        this.image = image;
+        this.user_id = user_id;
+    }
 
     public blog(String title, String description, Date date, String image, Date updated_at, int valid, int user_id) {
         this.title = title;

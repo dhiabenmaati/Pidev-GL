@@ -26,9 +26,9 @@ public class PiARTfx extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Hello World");
+        this.primaryStage.setTitle("PIART");
         
-        parentPage = FXMLLoader.load(getClass().getResource("/view/Accueil.fxml"));
+        parentPage = FXMLLoader.load(getClass().getResource("/view/accueil.fxml"));
         Scene scene = new Scene(parentPage);
         this.primaryStage.setScene(scene);
         this.primaryStage.show();

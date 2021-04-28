@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="720" prefWidth="1024" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilBlogController">
+   <children>
+      <Pane layoutX="314.0" layoutY="49.0" prefHeight="673.0" prefWidth="731.0" style="-fx-background-color: #e4eded;">
+         <children>
+            <Label layoutX="85.0" layoutY="6.0" prefHeight="50.0" prefWidth="139.0" text="Publié Par : ">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="user" layoutX="224.0" layoutY="6.0" prefHeight="50.0" prefWidth="259.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="483.0" layoutY="6.0" prefHeight="50.0" prefWidth="51.0" text="Le : ">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="date" layoutX="534.0" layoutY="6.0" prefHeight="50.0" prefWidth="197.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutY="42.0" prefHeight="50.0" prefWidth="145.0" text="Titre : ">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="title" layoutX="95.0" layoutY="42.0" prefHeight="53.0" prefWidth="414.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="218.0" layoutY="104.0" prefHeight="38.0" prefWidth="151.0" text="Description : ">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Text fx:id="description" layoutX="14.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="646.9830722808838">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Label layoutX="14.0" layoutY="318.0" prefHeight="38.0" prefWidth="208.0" text="Image : ">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Button fx:id="voir_commentaire" layoutX="493.0" layoutY="620.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="224.0" text="Voir Commentaires" />
+            <Label layoutX="354.0" layoutY="611.0" prefHeight="50.0" prefWidth="139.0" text="commentaires">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="nbc" layoutX="302.0" layoutY="610.0" prefHeight="53.0" prefWidth="51.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="image" fitHeight="253.0" fitWidth="355.0" layoutX="118.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" />
+         </children></Pane>
+      <Pane layoutY="-1.0" prefHeight="50.0" prefWidth="1045.0" style="-fx-background-color: #33726f;">
+         <children>
+            <Button fx:id="blog" layoutX="623.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="224.0" text="Blog" />
+            <Button fx:id="reclamation" layoutX="847.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="Reclamtion" />
+            <Button fx:id="notification" layoutX="399.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="224.0" text="Notifications" />
+         </children>
+      </Pane>
+      <Button fx:id="ajouter_publication" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="278.0" text="Ajouter Une Publication" />
+      <TableView fx:id="blog_table" layoutX="14.0" layoutY="115.0" prefHeight="593.0" prefWidth="290.0">
+        <columns>
+          <TableColumn fx:id="user_table" prefWidth="158.0" text="user_table" />
+          <TableColumn fx:id="title_table" prefWidth="131.0" text="title_table" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -38,10 +38,9 @@ public class comment_blog {
         this.signaler = signaler;
         this.user_id = user_id;
     }
-        public comment_blog(int id_blog_id, String comment, Date date, int user_id) {
+        public comment_blog(int id_blog_id, String comment, int user_id) {
         this.id_blog_id = id_blog_id;
         this.comment = comment;
-        this.date = date;
         this.user_id = user_id;
     }
       public comment_blog(String comment) {

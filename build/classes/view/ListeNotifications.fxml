@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="720" prefWidth="1024" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListeNotificationsController">
+   <children>
+      <TableView fx:id="reclamation_table1" layoutY="49.0" prefHeight="655.0" prefWidth="496.0">
+         <columns>
+            <TableColumn fx:id="type" prefWidth="89.0" text="type" />
+            <TableColumn fx:id="desc_rec" prefWidth="300.0" text="desciption" />
+            <TableColumn fx:id="reclamation_at" minWidth="0.0" prefWidth="106.0" text="date" />
+         </columns>
+      </TableView>
+      <Label fx:id="test" layoutX="626.0" layoutY="615.0" prefHeight="17.0" prefWidth="205.0" />
+      <Label fx:id="status_rec" layoutX="594.0" layoutY="170.0" prefHeight="43.0" prefWidth="215.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="553.0" layoutY="146.0" prefHeight="17.0" prefWidth="98.0" text="Etat :">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label fx:id="progress_at" layoutX="602.0" layoutY="252.0" prefHeight="43.0" prefWidth="215.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="553.0" layoutY="222.0" prefHeight="30.0" prefWidth="132.0" text="Progress-at : ">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label fx:id="valid_at" layoutX="619.0" layoutY="339.0" prefHeight="43.0" prefWidth="215.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="553.0" layoutY="304.0" prefHeight="17.0" prefWidth="98.0" text="valid_at : ">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="539.0" layoutY="401.0" prefHeight="30.0" prefWidth="215.0" text="Reponse reclamation : ">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Pane layoutY="-2.0" prefHeight="50.0" prefWidth="1045.0" style="-fx-background-color: #33726f;">
+         <children>
+            <Button fx:id="blog" layoutX="623.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="224.0" text="Blog" />
+            <Button fx:id="reclamation" layoutX="847.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="Reclamtion" />
+            <Button fx:id="notification" layoutX="399.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="224.0" text="Notifications" />
+         </children>
+      </Pane>
+      <Text fx:id="desc_reponse_rec" layoutX="560.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="418.13671875">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

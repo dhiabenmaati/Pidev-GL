@@ -33,8 +33,10 @@ public class comment_blogService {
         connection=DataSource.getInstance().getCnx();  
     }
     public void ajouterComment_blog(comment_blog b){
+                long millisecond=System.currentTimeMillis();  
+java.sql.Timestamp date=new java.sql.Timestamp(millisecond);  
         String req="INSERT INTO comment_blog(id_blog_id,comment,date,user_id) VALUES "
-                + "('"+b.getId_blog_id()+"','"+b.getComment()+"','"+b.getDate()+"','"+b.getUser_id()+"')";
+                + "('"+b.getId_blog_id()+"','"+b.getComment()+"','"+date+"','"+b.getUser_id()+"')";
         try {
             ste=connection.createStatement();
             ste.executeUpdate(req);
@@ -51,7 +53,22 @@ public class comment_blogService {
             ste=connection.createStatement();
             rs=ste.executeQuery(req);
             while (rs.next()) {  
-                list.add(new comment_blog(rs.getString("comment")));
+                list.add(new comment_blog(rs.getInt("id"),rs.getInt("id_blog_id"),rs.getString("comment"),rs.getDate("date"),rs.getInt("signaler"),rs.getInt("user_id")));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(reclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+      public List<comment_blog> readAllId(String id){
+        String req="select * from comment_blog WHERE id_blog_id='"+id+"' ";
+        List<comment_blog> list=new ArrayList<>();
+        try {
+            ste=connection.createStatement();
+            rs=ste.executeQuery(req);
+            while (rs.next()) {  
+                list.add(new comment_blog(rs.getInt("id"),rs.getInt("id_blog_id"),rs.getString("comment"),rs.getDate("date"),rs.getInt("signaler"),rs.getInt("user_id")));
                 
             }
         } catch (SQLException ex) {
@@ -60,8 +77,7 @@ public class comment_blogService {
         return list;
     }
     
-    
-    public void supprimerComment_blog(int id){
+    public void supprimerComment_blog(String id){
        String req="DELETE FROM `comment_blog` WHERE id='"+id+"'";
         try {
             ste=connection.createStatement();
@@ -72,13 +88,70 @@ public class comment_blogService {
         }
    }
        public void updatecomment_blog(comment_blog r, int id){
-       String req = "UPDATE `comment_blog` SET `comment`='"+r.getComment()+"' WHERE '"+id+"'";
+       String req = "UPDATE `comment_blog` SET `comment`='"+r.getComment()+"' WHERE id='"+id+"'";
                try {
             ste=connection.createStatement();
             ste.executeUpdate(req);
             System.err.println("Done");
         } catch (SQLException ex) {
             Logger.getLogger(reclamationService.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }                   
    }
+          public List<comment_blog> Readnbc(String id){
+        String req="select * from comment_blog where id_blog_id='"+id+"'";
+        List<comment_blog> list=new ArrayList<>();
+        try {
+            ste=connection.createStatement();
+            rs=ste.executeQuery(req);
+            while (rs.next()) {  
+                list.add(new comment_blog(rs.getInt("id"),rs.getInt("id_blog_id"),rs.getString("comment"),rs.getDate("date"),rs.getInt("signaler"),rs.getInt("user_id")));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(reclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+        public String nbc(String id){
+        String req="select * from comment_blog where id_blog_id='"+id+"'";
+        List<comment_blog> list=new ArrayList<>();
+        try {
+            ste=connection.createStatement();
+            rs=ste.executeQuery(req);
+            while (rs.next()) {  
+                list.add(new comment_blog(rs.getInt("id"),rs.getInt("id_blog_id"),rs.getString("comment"),rs.getDate("date"),rs.getInt("signaler"),rs.getInt("user_id")));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(reclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int lengString = list.size();
+        return String.valueOf(lengString);
+    }
+               public void updatesign(int nbr, int id){
+       String req = "UPDATE `comment_blog` SET `signaler`='"+nbr+"' WHERE id='"+id+"'";
+               try {
+            ste=connection.createStatement();
+            ste.executeUpdate(req);
+            System.err.println("Done");
+        } catch (SQLException ex) {
+            Logger.getLogger(reclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }                   
+   }
+                  
+      public List<comment_blog> readAllUser(int id){
+        String req="select * from comment_blog WHERE id='"+id+"'";
+        List<comment_blog> list=new ArrayList<>();
+        try {
+            ste=connection.createStatement();
+            rs=ste.executeQuery(req);
+            while (rs.next()) {  
+                list.add(new comment_blog(rs.getString("comment")));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(reclamationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 }

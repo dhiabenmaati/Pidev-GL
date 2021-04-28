@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/view/AddReclamtion.fxml</file>
-            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/piartfx/PiARTfx.java</file>
-            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/view/accueil.fxml</file>
-            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/controller/AccueilController.java</file>
+            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/controller/CommentaireController.java</file>
+            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/controller/ListReclamationController.java</file>
+            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/controller/AccueilBlogController.java</file>
+            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/service/comment_blogService.java</file>
+            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/service/signalercommentaireService.java</file>
+            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/controller/ListReponseReclamationBackOfficeController.java</file>
+            <file>file:/C:/Users/houssem/Documents/NetBeansProjects/piARTfx/src/controller/ListCommentairePublicationBackOfficeController.java</file>
         </group>
     </open-files>
 </project-private>

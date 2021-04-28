@@ -27,20 +27,19 @@ import javafx.stage.Stage;
 public class AccueilController implements Initializable {
 
     @FXML
-    private Button add;
+    private Button front;
     @FXML
-    private Button view;
-
+    private Button back;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-                add.setOnAction(event -> {
+                back.setOnAction(event -> {
 
             try {
-                Parent page1 = FXMLLoader.load(getClass().getResource("/PiARTfx/view/AddReclamation.fxml"));
+                Parent page1 = FXMLLoader.load(getClass().getResource("/view/ListCommentairePublicationBackOffice.fxml"));
                 Scene scene = new Scene(page1);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
@@ -49,9 +48,9 @@ public class AccueilController implements Initializable {
                 Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-                       view.setOnAction(event -> {
+                       front.setOnAction(event -> {
             try {
-                Parent page2 = FXMLLoader.load(getClass().getResource("/PiARTfx/view/ListReclamation.fxml"));
+                Parent page2 = FXMLLoader.load(getClass().getResource("/view/AccueilBlog.fxml"));
                 Scene scene = new Scene(page2);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);

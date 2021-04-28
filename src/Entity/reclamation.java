@@ -53,6 +53,12 @@ public class reclamation {
         this.status_rec = status_rec;
         this.type = type;
     }
+        public reclamation(String desc_rec, Date reclamation_at, String type, int user_id) {
+        this.desc_rec = desc_rec;
+        this.reclamation_at = reclamation_at;
+        this.type = type;
+        this.user_id = user_id;
+    }
 
     public int getId() {
         return id;

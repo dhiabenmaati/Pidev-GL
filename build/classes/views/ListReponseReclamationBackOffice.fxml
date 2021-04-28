@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720" prefWidth="1024" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListReponseReclamationBackOfficeController">
+   <Pane layoutX="247.0" layoutY="-1.0" prefHeight="50.0" prefWidth="777.0" style="-fx-background-color: #33726f;">
+      <children>
+         <Label layoutX="149.0" layoutY="7.0" prefHeight="37.0" prefWidth="492.0" text="Reponse Reclamations" textFill="#fcf5f5">
+            <font>
+               <Font size="22.0" />
+            </font>
+         </Label>
+      </children>
+   </Pane>
+     <TableView fx:id="reponse_reclamation_table" layoutX="263.0" layoutY="49.0" prefHeight="481.0" prefWidth="761.0">
+        <columns>
+          <TableColumn fx:id="id_rec_id" prefWidth="142.0" text="id_reclamation" />
+            <TableColumn fx:id="desc_reponse_rec" minWidth="0.0" prefWidth="564.0" text="reponse sur la reclamation" />
+        </columns>
+      </TableView>
+   <Button fx:id="supprimer" layoutX="768.0" layoutY="541.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="174.0" text="supprimer reponse " />
+   <Button fx:id="modifier" layoutX="512.0" layoutY="541.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="174.0" text="modifier reponse" />
+   <Label layoutX="266.0" layoutY="627.0" prefHeight="60.0" prefWidth="200.0" text="reponse sur la reclamtion">
+      <font>
+         <Font name="System Bold Italic" size="16.0" />
+      </font>
+   </Label>
+   <TextArea fx:id="rp" layoutX="462.0" layoutY="599.0" prefHeight="116.0" prefWidth="550.0" />
+   <VBox layoutY="-4.0" prefHeight="733.0" prefWidth="263.0" style="-fx-background-color: #214a48;">
+      <children>
+         <Label alignment="CENTER" prefHeight="107.0" prefWidth="250.0" text="Admin Dashborad" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="Cambria Bold" size="24.0" />
+            </font>
+         </Label>
+         <Label alignment="CENTER" prefHeight="37.0" prefWidth="264.0" textAlignment="CENTER" textFill="#dad5d5">
+               <font>
+                  <Font name="Cambria" size="18.0" />
+               </font>
+               <graphic>
+                  <Button fx:id="Reclamation" mnemonicParsing="false" prefHeight="29.0" prefWidth="259.0" text="Reclamation" />
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" prefHeight="37.0" prefWidth="255.0" textAlignment="CENTER" textFill="#dad5d5">
+               <font>
+                  <Font name="Cambria" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="37.0" prefWidth="255.0" textAlignment="CENTER" textFill="#dad5d5">
+               <font>
+                  <Font name="Cambria" size="18.0" />
+               </font>
+               <graphic>
+                  <Button fx:id="Publication" mnemonicParsing="false" prefHeight="29.0" prefWidth="409.0" text="Publication" />
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" prefHeight="37.0" prefWidth="255.0" textAlignment="CENTER" textFill="#dad5d5">
+               <font>
+                  <Font name="Cambria" size="18.0" />
+               </font>
+            </Label>
+      </children>
+   </VBox>
+</AnchorPane>

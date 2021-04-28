@@ -7,22 +7,14 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
 
 /**
  * FXML Controller class
  *
  * @author houssem
  */
-public class AddReclamtionController implements Initializable {
-
-    @FXML
-    private ChoiceBox<?> type;
-    @FXML
-    private TextArea desc_rec;
+public class PublicationController implements Initializable {
 
     /**
      * Initializes the controller class.

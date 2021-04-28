@@ -17,6 +17,12 @@ public class reponse_reclamation {
     public reponse_reclamation() {
     }
 
+    public reponse_reclamation(int id, int id_rec_id, String desc_reponse_rec) {
+        this.id = id;
+        this.id_rec_id = id_rec_id;
+        this.desc_reponse_rec = desc_reponse_rec;
+    }
+    
     public reponse_reclamation(int id_rec_id, String desc_reponse_rec) {
         this.id_rec_id = id_rec_id;
         this.desc_reponse_rec = desc_reponse_rec;
