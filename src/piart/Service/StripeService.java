@@ -10,8 +10,10 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.Card;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
+import com.stripe.model.PaymentIntent;
 import com.stripe.model.Token;
 import com.stripe.param.CustomerRetrieveParams;
+import com.stripe.param.PaymentIntentCreateParams;
 import java.util.HashMap;
 import java.util.Map;
 import piart.Entities.Users;
@@ -55,7 +57,19 @@ public class StripeService {
         chargeParam.put("currency", "usd");
         chargeParam.put("customer", user.getstripID());
         Charge charge = Charge.create(chargeParam);
-        
+    }
+    
+    public void sendRecipt(Users user, Long amount) throws StripeException {
+        PaymentIntentCreateParams params =
+        PaymentIntentCreateParams.builder()
+          .setAmount(amount)
+          .setCurrency("usd")
+          .addPaymentMethodType("card")
+          .setReceiptEmail("aminedahmen14@gmail.com")
+          .build();
+
+      PaymentIntent paymentIntent = PaymentIntent.create(params);
+
     }
 
 }

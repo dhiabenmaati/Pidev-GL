@@ -5,7 +5,6 @@
  */
 package piart.Controllers;
 
-import com.stripe.exception.CardException;
 import com.stripe.exception.StripeException;
 import java.net.URL;
 import java.util.HashMap;
@@ -14,8 +13,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import piart.Entities.Users;
 import piart.Service.StripeService;
 import piart.Service.UserService;
@@ -50,7 +52,6 @@ public class PaymentFormController implements Initializable {
     public void initData(Double totale) {
         amount = totale;
         System.out.println(totale);
-
     }
 
     @FXML
@@ -68,11 +69,18 @@ public class PaymentFormController implements Initializable {
         try {
             ss.addClient(user);
             ss.addCard(user, cardParam);
-            ss.chargeClient(user, 100*(int)(amount));
+            ss.chargeClient(user, (int)(100*amount));
+            ss.sendRecipt(user, (long)amount);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Paiement Succées");
+            alert.setHeaderText("Merci pour vote achat !");
+            alert.setContentText("Bonjour " + user.getName() + " " + user.getSurname() + "\n Votre achat a été éffectuer avec sucéés");
+            alert.showAndWait();
+            //Stage stage.hide()
         } catch(StripeException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
-            alert.setHeaderText("Erreur" + e.getCode());
+            alert.setHeaderText("Erreur : " + e.getCode());
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }

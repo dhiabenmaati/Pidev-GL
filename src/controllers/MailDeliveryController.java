@@ -6,8 +6,8 @@
 package controllers;
 
 import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
+/*import javax.mail.*;
+import javax.mail.internet.*;*/
 import javax.activation.*;
 import javax.swing.JOptionPane;
 
@@ -28,7 +28,7 @@ public class MailDeliveryController {
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true"); //TLS
         
-        Session session = Session.getInstance(prop,
+      /*  Session session = Session.getInstance(prop,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
@@ -52,6 +52,6 @@ public class MailDeliveryController {
 
         } catch (MessagingException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
