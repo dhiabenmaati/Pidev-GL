@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/art/src/view/AfficherCategorieController.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/art/src/view/ModifcationProduit.fxml</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/art/src/view/ModifcationProduitController.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/art/src/view/AfficherProduitController.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/art/src/art/Art.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/art/src/services/CategorieService.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/art/src/view/FrontProduitController.java</file>
-            <file>file:/C:/Users/21624/Documents/NetBeansProjects/art/src/services/ProduitService.java</file>
+            <file>file:/C:/Users/alabe/OneDrive/Documents/GitHub/Pidev-GL/src/piart/Piart.java</file>
+            <file>file:/C:/Users/alabe/OneDrive/Documents/GitHub/Pidev-GL/src/piart/Service/LivreurService.java</file>
+            <file>file:/C:/Users/alabe/OneDrive/Documents/GitHub/Pidev-GL/src/piart/Service/PanierService.java</file>
+            <file>file:/C:/Users/alabe/OneDrive/Documents/GitHub/Pidev-GL/src/piart/Controllers/DetailCommandeController.java</file>
         </group>
     </open-files>
 </project-private>
