@@ -22,8 +22,18 @@ import javax.swing.JOptionPane;
 import Entity.Users;
 import Services.mysqlconnect;
 import static controllers.Login.encrypt;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 /**
  *
  * @author alabe
@@ -65,6 +75,9 @@ public class UsersController implements Initializable {
     
     @FXML
     private TextField search;
+    
+    @FXML
+    private Button returnn;
        
     ObservableList<Users> listM;
     ObservableList<Users> DataList;
@@ -212,6 +225,19 @@ public class UsersController implements Initializable {
         sortedData.comparatorProperty().bind(table_users.comparatorProperty());
         table_users.setItems(sortedData);
         }
+    
+    public void handleClicks(ActionEvent actionEvent) {
+        returnn.setOnAction(event -> {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminHome.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+            } catch (IOException ex) {
+            Logger.getLogger(controllers.UsersController.class.getName()).log(Level.SEVERE, null, ex); }});
+
+}
                 
     
     @Override
