@@ -93,29 +93,14 @@ public class Login  {
                     rs = pst.executeQuery();
 			if( rs.next() )
 			{       
-                             if(   rs.getString("status").equals("active") && rs.getString("roles").equals("ROLE_ADMIN")){JOptionPane.showMessageDialog(null, "Welcome " + rs.getString("name")); 
+                             if(   rs.getString("status").equals("active")){JOptionPane.showMessageDialog(null, "Welcome " + rs.getString("name")); 
                              prefs = Preferences.userRoot().node(this.getClass().getName());
                              prefs.putInt("user", rs.getInt("id"));
                              System.out.println(prefs.get("user", defaultValue));
                     
                              try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/views/AdminHome.fxml"));
-            Scene scene = new Scene(page1);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-            } catch (IOException ex) {
-            Logger.getLogger(controllers.UsersController.class.getName()).log(Level.SEVERE, null, ex); };
-                             
-                             }
-                             else if(   rs.getString("status").equals("active") && rs.getString("roles").equals("ROLE_USER")){JOptionPane.showMessageDialog(null, "Welcome " + rs.getString("name")); 
-                             prefs = Preferences.userRoot().node(this.getClass().getName());
-                             prefs.putInt("user", rs.getInt("id"));
-                             System.out.println(prefs.get("user", defaultValue));
-                    
-                             try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("/piart/gui/menu.fxml"));
-            Scene scene = new Scene(page1);
+            Parent page = FXMLLoader.load(getClass().getResource("/views/AdminHome.fxml"));
+            Scene scene = new Scene(page);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();

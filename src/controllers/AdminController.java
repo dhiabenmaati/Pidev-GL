@@ -54,6 +54,9 @@ public class AdminController implements Initializable {
     
     @FXML
     private Text tot_user , tot_cat , tot_prod , tot_bid;
+    
+    @FXML
+    private PieChart pieChart;
  
     @Override
     public void initialize(URL location, ResourceBundle resources ) {
@@ -62,6 +65,11 @@ public class AdminController implements Initializable {
             tot_cat.setText("" + TotalCategory());
             tot_prod.setText("" + TotalProduit());
             tot_bid.setText("" + TotalEnchere());
+            int NonVerified = TotalUsers() - VerifiedUsers() ;
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+            new PieChart.Data("Verified User", VerifiedUsers()),
+            new PieChart.Data("Unverified", NonVerified ));
+            pieChart.setData(pieChartData);
            
             } 
         catch (Exception e) { }
@@ -78,6 +86,17 @@ public class AdminController implements Initializable {
             stage.show();
             } catch (IOException ex) {
             Logger.getLogger(controllers.UsersController.class.getName()).log(Level.SEVERE, null, ex); }});
+        
+        btnSignout.setOnAction(event -> {
+            closeButtonAction() ;});
+}
+    
+    
+    private void closeButtonAction(){
+    // get a handle to the stage
+    Stage stage = (Stage) btnSignout.getScene().getWindow();
+    // do what you have to do
+    stage.close();
 }
     
     
@@ -89,6 +108,18 @@ public class AdminController implements Initializable {
             PreparedStatement ps = conn.prepareStatement("select * from user");
             ResultSet rs = ps.executeQuery();
             while (rs.next()){   TotalUsers++ ;             }
+        } catch (Exception e) { }
+        return TotalUsers;
+    }
+    
+        public int VerifiedUsers(){
+        Connection conn = ConnectDb();
+        int TotalUsers = 0 ;
+        try {
+            PreparedStatement ps = conn.prepareStatement("select * from user");
+            ResultSet rs = ps.executeQuery(); 
+            while (rs.next()){   
+                if (rs.getString("status").equals("active"))  {TotalUsers++ ;}           }
         } catch (Exception e) { }
         return TotalUsers;
     }
