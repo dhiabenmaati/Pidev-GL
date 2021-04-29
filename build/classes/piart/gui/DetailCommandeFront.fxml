@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="669.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="piart.Controllers.DetailCommandeFrontController">
+   <children>
+      <Pane prefHeight="50.0" prefWidth="821.0" style="-fx-background-color: #33726f;">
+         <children>
+            <Label layoutX="294.0" layoutY="7.0" prefHeight="37.0" prefWidth="233.0" text="Détail de la Commande" textFill="#fcf5f5">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tvDetailCmd" layoutX="106.0" layoutY="126.0" prefHeight="468.0" prefWidth="610.0">
+         <columns>
+            <TableColumn fx:id="colProd" prefWidth="238.0" text="Produit" />
+            <TableColumn fx:id="colPrix" prefWidth="98.0" text="Prix" />
+            <TableColumn fx:id="colQte" prefWidth="127.0" text="Quantité" />
+            <TableColumn fx:id="colTotale" prefWidth="146.0" text="Totale" />
+         </columns>
+      </TableView>
+      <Label layoutX="577.0" layoutY="615.0" text="Totale :" textFill="#2e86c1">
+         <font>
+            <Font name="Berlin Sans FB" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTotale" layoutX="664.0" layoutY="615.0" textFill="#2e86c1">
+         <font>
+            <Font name="Berlin Sans FB" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="106.0" layoutY="80.0" text="Etat du commande :">
+         <font>
+            <Font name="Berlin Sans FB" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbStatus" layoutX="303.0" layoutY="80.0">
+         <font>
+            <Font name="Berlin Sans FB" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

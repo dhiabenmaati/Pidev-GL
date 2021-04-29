@@ -14,23 +14,25 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
+import piart.Entities.Adresse;
 import piart.Entities.Commande;
 import piart.Entities.DetailCommande;
 import piart.Entities.Users;
+import piart.Service.AdresseService;
 import piart.Service.CommandeService;
-import piart.Service.LivreurService;
+import piart.Service.UserService;
+
 /**
  * FXML Controller class
  *
  * @author Amine
  */
-public class DetailCommandeController implements Initializable {
+public class DetailCommandeLivController implements Initializable {
 
     @FXML
     private TableView<DetailCommande> tvDetailCmd;
@@ -45,33 +47,43 @@ public class DetailCommandeController implements Initializable {
     @FXML
     private Label lbTotale;
     @FXML
-    private ChoiceBox<String> cbLivreur;
+    private Label lbStatus;
     Commande cmd;
     @FXML
-    private Label lbStatus;
+    private Label lbNom;
+    @FXML
+    private Label lbPrenom;
+    @FXML
+    private Label lbAdresse;
+    @FXML
+    private Label lbVille;
+    @FXML
+    private Label lbTel;
+    @FXML
+    private Label lbCP;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //showDetailCommande();
-        initLivreur();
-    }    
+        
+    }
 
-    
     public void initData(Commande c) {
         cmd = c;
         showDetailCommande();
+        showInfo();
         status();
     }
-    
+
     public void showDetailCommande() {
         CommandeService cs = new CommandeService();
         ObservableList<DetailCommande> DetailCommandes = FXCollections.observableArrayList();
         List<DetailCommande> dcs = new ArrayList(cs.getDetailCommande(cmd.getId()));
-        for(DetailCommande dc : dcs)
+        for (DetailCommande dc : dcs) {
             DetailCommandes.add(dc);
+        }
         colPrix.setCellValueFactory(new PropertyValueFactory<DetailCommande, Double>("prix"));
         colTotale.setCellValueFactory(new PropertyValueFactory<DetailCommande, Double>("totale"));
         colProd.setCellValueFactory(new PropertyValueFactory<DetailCommande, String>("nom_prod"));
@@ -80,27 +92,29 @@ public class DetailCommandeController implements Initializable {
         tvDetailCmd.setItems(DetailCommandes);
     }
     
-    public void initLivreur() {
-        LivreurService ls = new LivreurService();
-        List<Users> livreurs = ls.getAllLivreurs();
-        cbLivreur.getItems().add("Selection un livreur");
-        cbLivreur.setValue("Selection un livreur");
-        for(Users livreur : livreurs) {
-            cbLivreur.getItems().add(livreur.getId() + " - " + livreur.getName() + " " + livreur.getName());
-        }
+    public void showInfo() {
+        UserService us = new UserService();
+        AdresseService as = new AdresseService();
+        Users user = us.getUserByID(cmd.getLivreur_id()); // USER ID
+        lbNom.setText(user.getName());
+        lbPrenom.setText(user.getSurname());
+        System.out.println(cmd.getUser_id());
+        Adresse adr = as.getAdressebyUserID(cmd.getLivreur_id());// USER ID
+        if(adr == null) return ;
+        lbAdresse.setText(adr.getAdresse());
+        lbCP.setText(Integer.toString(adr.getCodepostal()));
+        lbVille.setText(adr.getVille());
+        lbTel.setText(Integer.toString(adr.getNum_tel()));
+    }
+
+    @FXML
+    private void updateStatus(ActionEvent event) {
+        CommandeService cs = new CommandeService();
+        cs.updateStatus(2, cmd.getId());
+        cmd.setStatus(2);
+        status();
     }
     
-    @FXML
-     void affecterLivreur(ActionEvent event) {
-        CommandeService cs = new CommandeService();
-        String livreur = cbLivreur.getValue();
-        int livreur_id = Integer.parseInt(livreur.substring(0, livreur.indexOf("-") - 1));
-        cs.affecterCommande(livreur_id, cmd.getId());
-        cmd.setUser_id(1);
-        status();
-        showDetailCommande();
-    }
-     
     public void status() {
         if (cmd.getStatus() == 0) {
             lbStatus.setText("En Attent");
@@ -113,4 +127,5 @@ public class DetailCommandeController implements Initializable {
             lbStatus.setTextFill(Color.web("#4FC12E"));
         }
     }
+    
 }

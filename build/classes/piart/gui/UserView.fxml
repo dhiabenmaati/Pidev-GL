@@ -51,6 +51,7 @@
                   <Font name="Cambria" size="18.0" />
                </font>
             </Label>
+            <Button mnemonicParsing="false" onAction="#goToLivraison" prefHeight="29.0" prefWidth="259.0" text="Gestion des livraisons" />
             <Label alignment="CENTER" prefHeight="37.0" prefWidth="255.0" textAlignment="CENTER" textFill="#dad5d5">
                <font>
                   <Font name="Cambria" size="18.0" />
@@ -60,11 +61,10 @@
       </VBox>
       <TableView fx:id="table_users" layoutX="262.0" layoutY="116.0" onMouseClicked="#getSelected" prefHeight="578.0" prefWidth="531.0">
         <columns>
-            <TableColumn fx:id="col_id" prefWidth="38.0" text="ID" />
-          <TableColumn fx:id="col_email" prefWidth="180.0" text="Email" />
-            <TableColumn fx:id="col_prenom" prefWidth="154.0" text="Prenom" />
-            <TableColumn fx:id="col_nom" prefWidth="70.0" text="Nom" />
-            <TableColumn fx:id="col_tel" prefWidth="96.0" text="Tél" />
+          <TableColumn fx:id="col_email" prefWidth="161.0" text="Email" />
+            <TableColumn fx:id="col_prenom" prefWidth="146.0" text="Prenom" />
+            <TableColumn fx:id="col_nom" prefWidth="136.0" text="Nom" />
+            <TableColumn fx:id="col_tel" prefWidth="87.0" text="Tél" />
         </columns>
       </TableView>
       <TextField fx:id="tfSearch" layoutX="439.0" layoutY="73.0" onKeyPressed="#Search" prefHeight="30.0" prefWidth="180.0" promptText="Recherche" />

@@ -16,6 +16,6 @@
       <Button fx:id="btnPanier" layoutX="203.0" layoutY="157.0" mnemonicParsing="false" onAction="#goToPanier" prefHeight="25.0" prefWidth="108.0" text="Panier" />
       <Button fx:id="btnCommandes" layoutX="389.0" layoutY="93.0" mnemonicParsing="false" onAction="#goToMesCommandes" text="Mes Commandes" />
       <Button fx:id="btnMesAdresse" layoutX="389.0" layoutY="157.0" mnemonicParsing="false" onAction="#goToAdresse" prefHeight="25.0" prefWidth="108.0" text="Mes Adresse" />
-      <Button fx:id="btnLivreur" layoutX="289.0" layoutY="225.0" mnemonicParsing="false" onAction="#goToLivreur" text="Gestion des Livreurs" />
+      <Button layoutX="314.0" layoutY="238.0" mnemonicParsing="false" onAction="#goToBackOffice" text="BackOffice" />
    </children>
 </AnchorPane>

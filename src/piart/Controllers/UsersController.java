@@ -52,10 +52,7 @@ public class UsersController implements Initializable {
     
     @FXML
     private TableColumn<Users, Integer> col_tel;
-    
-    @FXML
-    private TableColumn<Users, Integer> col_id;
-    
+        
     @FXML
     private TextField txt_email;
 
@@ -120,7 +117,6 @@ public class UsersController implements Initializable {
         col_nom.setCellValueFactory(new PropertyValueFactory<Users,String>("name"));
         col_prenom.setCellValueFactory(new PropertyValueFactory<Users,String>("surname"));
         col_tel.setCellValueFactory(new PropertyValueFactory<Users, Integer>("num_tel"));
-        col_id.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
         listM = mysqlconnect.getDatausers();
         table_users.setItems(listM);
     }
@@ -150,7 +146,6 @@ public class UsersController implements Initializable {
         col_nom.setCellValueFactory(new PropertyValueFactory<Users,String>("name"));
         col_prenom.setCellValueFactory(new PropertyValueFactory<Users,String>("surname"));
         col_tel.setCellValueFactory(new PropertyValueFactory<Users, Integer>("num_tel"));
-        col_id.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
         table_users.setItems(usersList);
     }
 
@@ -167,6 +162,15 @@ public class UsersController implements Initializable {
     @FXML
     private void goToLivreurs(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/UserView.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToLivraison(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/LivreurPannel.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

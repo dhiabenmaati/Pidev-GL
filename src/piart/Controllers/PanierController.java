@@ -5,9 +5,7 @@
  */
 package piart.Controllers;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -33,9 +31,11 @@ import javafx.stage.Stage;
 import piart.Entities.Adresse;
 import piart.Entities.Commande;
 import piart.Entities.Panier;
+import piart.Entities.Users;
 import piart.Service.AdresseService;
 import piart.Service.CommandeService;
 import piart.Service.PanierService;
+import piart.Service.UserService;
 
 /**
  * FXML Controller class
@@ -85,21 +85,16 @@ public class PanierController {
     }
     
     @FXML
-    private void goToProduit(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/showProduit.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    
-    @FXML
     private void Commander(ActionEvent event) throws IOException  {
-        /*
-        
-            if(user don't have adresse print error message 
-        
-        */
+        AdresseService as = new AdresseService();
+        if(as.getAdressebyUserID(11) == null) { // USER ID
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucune adresse Trouvée");
+            alert.setContentText("Veuillez ajouter une adresse de livraison svp !");
+            alert.showAndWait();
+            return ;
+        }
         if(rdCB.isSelected()) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/piart/gui/PaymentForm.fxml"));
@@ -115,19 +110,27 @@ public class PanierController {
             
             return ;
         }
-        
         if(!rdCB.isSelected() && !rdLiv.isSelected()) {
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Dialog");
+            alert.setTitle("Error");
             alert.setHeaderText("Erreur");
             alert.setContentText("Veuillez selection le mode de paiement svp !");
             alert.showAndWait();
             return ;
         }
+        PanierService ps = new PanierService();
+        if(ps.getPanierItems().isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Erreur");
+            alert.setContentText("Le panier est vide !");
+            alert.showAndWait();
+            return ;
+        }
         CommandeService cs = new CommandeService();
         long millis = System.currentTimeMillis();  
-        java.sql.Date date=new java.sql.Date(millis);  
-        Commande c = new Commande(20, date, 0);
+        java.sql.Date date = new java.sql.Date(millis);
+        Commande c = new Commande(11, date, 0); // USER ID
         cs.ajouterCommande(c);
         cs.ajouterDetailCommade();
     }
@@ -151,17 +154,62 @@ public class PanierController {
     }
     
     public void showInfo() {
-        /*
-
-            show user info
-
-        */
+        UserService us = new UserService();
         AdresseService as = new AdresseService();
-        Adresse adr = as.getAdressebyUserID(20);//user_id
+        Users user = us.getUserByID(11); // USER ID
+        lbNom.setText(user.getName());
+        lbPrenom.setText(user.getSurname());
+        Adresse adr = as.getAdressebyUserID(11);// USER ID
+        if(adr == null) return ; 
         lbAdresse.setText(adr.getAdresse());
         lbCP.setText(Integer.toString(adr.getCodepostal()));
         lbVille.setText(adr.getVille());
         lbTel.setText(Integer.toString(adr.getNum_tel()));
+    }
+
+ 
+    private void goToProduit(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/showProduit.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToAdresse(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/adresse.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToPanier(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/panier.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToMesCommandes(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/MesCommandes.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/menu.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
     
 }

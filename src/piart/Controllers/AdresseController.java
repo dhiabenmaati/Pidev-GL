@@ -7,11 +7,7 @@ package piart.Controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,13 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import piart.Entities.Adresse;
 import piart.Service.AdresseService;
@@ -46,18 +40,6 @@ public class AdresseController implements Initializable{
     @FXML
     private TextField tfNum;
     @FXML
-    private TableView<Adresse> tvAdresses;
-    @FXML
-    private TableColumn<Adresse, String> colAdresse;
-    @FXML
-    private TableColumn<Adresse, String> colVille;
-    @FXML
-    private TableColumn<Adresse, Integer> colCP;
-    @FXML
-    private TableColumn<Adresse, Integer> colNum;
-    @FXML
-    private Button btnBack;
-    @FXML
     private Button btnAdd;
     @FXML
     private Button btnEdit;
@@ -69,13 +51,15 @@ public class AdresseController implements Initializable{
     private Label lbSuccess;
     @FXML
     private Label lbError;
+    @FXML
+    private AnchorPane goToMenu;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        showAdresses();
+        showAdresse();
     }     
 
     @FXML
@@ -95,51 +79,78 @@ public class AdresseController implements Initializable{
             AdresseService as = new AdresseService();
             Adresse adr = new Adresse(tfAdresse.getText(), Integer.parseInt(tfCP.getText()), tfVille.getText(), Integer.parseInt(tfCP.getText()), 11);
             as.ajouterAdresse(adr);
-            lbSuccess.setText("L'adresse a été ajoutée avec succée !");
-            lbError.setText("");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Adresse Ajouté");
+            alert.setHeaderText("Succées");
+            alert.setContentText("Votre adresse a été ajoutée avec succées !");
+            alert.showAndWait();
         }
-        showAdresses();
     }
 
     @FXML
     private void edit(ActionEvent event) {
         AdresseService as = new AdresseService();
-        Adresse adr = new Adresse(Integer.parseInt(lbId.getText()), tfAdresse.getText(), Integer.parseInt(tfCP.getText()), tfVille.getText(), Integer.parseInt(tfCP.getText()), 11);
+        Adresse adr = new Adresse(Integer.parseInt(lbId.getText()), tfAdresse.getText(), Integer.parseInt(tfCP.getText()), tfVille.getText(), Integer.parseInt(tfCP.getText()), 11); // USER ID
         as.modifierAdresse(adr);
-        showAdresses();
-        lbSuccess.setText("L'adresse a été modifiée avec succée !");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Adresse Ajouté");
+            alert.setHeaderText("Succées");
+            alert.setContentText("Votre adresse a été mdifiée avec succées !");
+            alert.showAndWait();
     }
 
     @FXML
     private void delete(ActionEvent event) {
         AdresseService as = new AdresseService();
-        Adresse adr = new Adresse(Integer.parseInt(lbId.getText()), tfAdresse.getText(), Integer.parseInt(tfCP.getText()), tfVille.getText(), Integer.parseInt(tfCP.getText()), 11);
+        Adresse adr = new Adresse(Integer.parseInt(lbId.getText()), tfAdresse.getText(), Integer.parseInt(tfCP.getText()), tfVille.getText(), Integer.parseInt(tfCP.getText()), 11); // USER ID
         as.supprimerAdresse(adr);
-        showAdresses();
-        lbSuccess.setText("L'adresse a été supprimée avec succée !");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Adresse Ajouté");
+            alert.setHeaderText("Succées");
+            alert.setContentText("Votre adresse a été supprimée avec succées !");
+            alert.showAndWait();
     }
     
-    public void showAdresses() {
-        AdresseService as = new AdresseService();
-        ObservableList<Adresse> adresseList = FXCollections.observableArrayList();
-        List<Adresse> adrs = new ArrayList(as.getAllAdresses());
-        for(Adresse a : adrs)
-            adresseList.add(a);
-        colAdresse.setCellValueFactory(new PropertyValueFactory<Adresse, String>("adresse"));
-        colCP.setCellValueFactory(new PropertyValueFactory<Adresse, Integer>("codepostal"));
-        colVille.setCellValueFactory(new PropertyValueFactory<Adresse, String>("ville"));
-        colNum.setCellValueFactory(new PropertyValueFactory<Adresse, Integer>("num_tel"));
-        tvAdresses.setItems(adresseList);
-    }
 
-    @FXML
-    private void handleMouseClick(MouseEvent event) {
-        Adresse adr = tvAdresses.getSelectionModel().getSelectedItem();
+    private void showAdresse() {
+        AdresseService as = new AdresseService();
+        Adresse adr = as.getAdressebyUserID(11);
+        if(adr == null) 
+            return;
         lbId.setText(Integer.toString(adr.getId()));
         tfAdresse.setText(adr.getAdresse());
         tfCP.setText(Integer.toString(adr.getCodepostal()));
         tfNum.setText(Integer.toString(adr.getNum_tel()));
         tfVille.setText(adr.getVille());
+    }
+
+
+    @FXML
+    private void goToAdresse(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/adresse.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void goToPanier(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/panier.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    @FXML
+    private void goToMesCommandes(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/piart/gui/MesCommandes.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
     
 }

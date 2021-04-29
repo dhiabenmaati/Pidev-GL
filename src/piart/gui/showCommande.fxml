@@ -56,6 +56,7 @@
                   <Font name="Cambria" size="18.0" />
                </font>
             </Label>
+            <Button mnemonicParsing="false" onAction="#goToLivraison" prefHeight="29.0" prefWidth="259.0" text="Gestion des livraison" />
             <Label alignment="CENTER" prefHeight="37.0" prefWidth="255.0" textAlignment="CENTER" textFill="#dad5d5">
                <font>
                   <Font name="Cambria" size="18.0" />
